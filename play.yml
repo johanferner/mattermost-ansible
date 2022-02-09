@@ -14,8 +14,10 @@
       setup:
 
   vars:
-    mattermost_version: 4.3.2
-    postgres_version: 9.4
+    mattermost_version: 6.3.3
+    postgres_version: 12
+    #Set to "native" if OS native postgres and to "postgres" if postgres.org is requested
+    postgres_distribution: native
 
    # The user the mattermost process will run as. The group will match.
     mattermost_user: mattermost
@@ -37,6 +39,6 @@
   roles:
     - postgres
     - mattermost
-    - letsencrypt
-    - nginx
-    - cron
+#    - letsencrypt
+#    - nginx
+#    - cron

@@ -1,14 +1,17 @@
 ---
-- name: Add postgres repository key
+ - name: Add postgres repository key
   apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     state: present
+    when: postgres_distribution == "postgres"
 
 - name: Add postgres apt repository
   apt_repository:
     repo: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main'
     state: present
     update_cache: yes
+    when: postgres_distribution == "postgres"
+    
 
 - name: Ensure packages are installed
   apt: name={{item}}
