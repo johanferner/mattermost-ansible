@@ -1,16 +1,16 @@
 ---
- - name: Add postgres repository key
+- name: Add postgres repository key
   apt_key:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     state: present
-    when: postgres_distribution == "postgres"
+  when: postgres_distribution == "postgres"
 
 - name: Add postgres apt repository
   apt_repository:
     repo: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main'
     state: present
     update_cache: yes
-    when: postgres_distribution == "postgres"
+  when: postgres_distribution == "postgres"
     
 
 - name: Ensure packages are installed
@@ -18,7 +18,7 @@
   with_items:
     - postgresql-{{ postgres_version }}
     - libpq-dev
-    - python-psycopg2
+    - python3-psycopg2
 
 - name: Enable and start postgres service
   service:
